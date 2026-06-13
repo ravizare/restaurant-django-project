@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Little Lemon Menu</title>
+    <link rel="stylesheet" href="{% static 'bookings/css/style.css' %}">
+</head>
+<body>
+    <h1>Our Restaurant Menu</h1>
+    <ul>
+        {% for item in menu_items %}
+            <li><strong>{{ item.name }}</strong> - ${{ item.price }}</li>
+        {% empty %}
+            <li>No items on the menu yet!</li>
+        {% endfor %}
+    </ul>
+
+    <hr> <!-- Visual Divider Line -->
+
+    <h2>Book a Table</h2>
+    <form method="POST">
+        {% csrf_token %} <!-- Django's mandatory security token -->
+        {{ booking_form.as_p }} <!-- Renders fields as neat paragraphs -->
+        <button type="submit">Submit Reservation</button>
+    </form>
+</body>
+</html>
