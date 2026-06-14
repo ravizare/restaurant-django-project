@@ -76,10 +76,16 @@ WSGI_APPLICATION = 'restaurant_core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'restaurant_db',          # Ensure you created this database in MySQL
+        'USER': 'root',                   # Change from 'your_mysql_username' to 'root'
+        'PASSWORD': 'R1a2v3i4@1990', # Replace with the password you set when installing MySQL
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
+
+
 
 
 # Password validation

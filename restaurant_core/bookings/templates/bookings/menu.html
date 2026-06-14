@@ -1,27 +1,34 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Little Lemon Menu</title>
+    <meta charset="UTF-8">
+    <title>Little Lemon Restaurant</title>
     <link rel="stylesheet" href="{% static 'bookings/css/style.css' %}">
 </head>
 <body>
-    <h1>Our Restaurant Menu</h1>
-    <ul>
-        {% for item in menu_items %}
-            <li><strong>{{ item.name }}</strong> - ${{ item.price }}</li>
-        {% empty %}
-            <li>No items on the menu yet!</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Our Restaurant Menu</h1>
+        <ul class="menu-grid">
+            {% for item in menu_items %}
+                <li class="menu-card">
+                    <strong>{{ item.name }}</strong>
+                    <p>{{ item.description }}</p>
+                    <span style="color: #e67e22; font-weight: bold;">${{ item.price }}</span>
+                </li>
+            {% empty %}
+                <p>No items on the menu yet!</p>
+            {% endfor %}
+        </ul>
 
-    <hr> <!-- Visual Divider Line -->
+        <br><br>
 
-    <h2>Book a Table</h2>
-    <form method="POST">
-        {% csrf_token %} <!-- Django's mandatory security token -->
-        {{ booking_form.as_p }} <!-- Renders fields as neat paragraphs -->
-        <button type="submit">Submit Reservation</button>
-    </form>
+        <h2>Book a Table</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ booking_form.as_p }}
+            <button type="submit">Submit Reservation</button>
+        </form>
+    </div>
 </body>
 </html>
